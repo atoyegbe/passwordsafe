@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 
 
-DEBUG = env.bool('DEBUG', default=False)
+DEBUG = env.bool('DEBUG')
 
 TEMPLATE_DEBUG = DEBUG
 
