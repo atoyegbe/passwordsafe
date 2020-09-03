@@ -7,6 +7,7 @@ $(document).ready(function () {
       data: $(this).text(),
       success: function (response) {
         $("#passwordsafe").val(response.password);
+        $("#passwordsafe").val(response.password);
       },
     });
   });
