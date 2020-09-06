@@ -4,12 +4,6 @@
   
  <form method="POST" class="text-center mx-auto"> 
    {% csrf_token %}
-   {% if messages %}
-     {% for message in messages %}
-        {{message}}
-      {% endfor %}
-   {% endif %}
-
   <h1>Login - passwordsafe</h1>
   <br>
   <div class="form-row">

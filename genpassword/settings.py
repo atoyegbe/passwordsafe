@@ -49,6 +49,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SIGNING_BACKEND = 'django_cryptography.core.signing.TimestampSigner'
+
 ROOT_URLCONF = 'genpassword.urls'
 
 TEMPLATES = [
@@ -68,7 +70,6 @@ TEMPLATES = [
         },
     },
 ]
-SIGNING_BACKEND = 'django_cryptography.core.signing.TimestampSigner'
 WSGI_APPLICATION = 'genpassword.wsgi.application'
 
 
