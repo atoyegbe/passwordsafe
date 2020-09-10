@@ -4,13 +4,16 @@ python:
     - "3.8"
 
 services:
+    - postgresql
+
+env:
     - DJANGO=3.1.1 DB=postgresql
 
 install:
     pipenv install 
 
 before_script:
-    - psql -c "create database travis_ci_test;" -U postgres 
+    - psql -c "create database travis_ci_db;" -U postgres 
     - python manage.py collectstatic 
 
 script:

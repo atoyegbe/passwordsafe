@@ -79,11 +79,10 @@ if "TRAVIS" in os.environ:
         SECRET_KEY="justtravisrandom12236rhfjdjb"
         DEBUG = False 
         TEMPLATE_DEBUG = True
-        
         DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'travis_ci_test',
+            'NAME': 'travis_ci_db',
             'USER': 'travis',
             'PASSWORD': '',
             'HOST': '127.0.0.1',
