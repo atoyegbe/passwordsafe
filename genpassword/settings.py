@@ -18,7 +18,6 @@ DEBUG = env.bool('DEBUG')
 TEMPLATE_DEBUG = DEBUG
 
 # Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
-SECRET_KEY = env('SECRET_KEY')
 
 # Parse database connection url strings like psql://user:pass@127.0.0.1:8458/db
 
@@ -76,7 +75,25 @@ WSGI_APPLICATION = 'genpassword.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {'default': env.db('DATABASE_URL')}
+if "TRAVIS" in os.environ:
+        SECRET_KEY="justtravisrandom12236rhfjdjb"
+        DEBUG = False 
+        TEMPLATE_DEBUG = True
+        
+        DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'travis_ci_test',
+            'USER': 'travis',
+            'PASSWORD': '',
+            'HOST': '127.0.0.1',
+        }
+    }
+else:
+    DATABASES = {'default': env.db('DATABASE_URL')}
+    SECRET_KEY = env('SECRET_KEY')
+    django_heroku.settings(locals()) 
+    del DATABASES['default']['OPTIONS']['sslmode']
 
 
 # Password validation
@@ -125,6 +142,3 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
-
-django_heroku.settings(locals()) 
-del DATABASES['default']['OPTIONS']['sslmode']
